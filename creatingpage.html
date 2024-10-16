@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Your Creature</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('bg3.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .creature-tool {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 50px;
+        }
+
+        .creature-tool h2 {
+            font-size: 5em;
+            margin-bottom: 20px;
+        }
+
+        .creature-tool p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 20px auto;
+            color: #ebebeb;
+        }
+
+        .start-button {
+            padding: 20px 40px;
+            font-size: 1.5em;
+            background-color: #e43f5a;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .start-button:hover {
+            background-color: #c33149;
+        }
+
+        .image-container {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            margin: 40px 0;
+            gap: 20px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0 20px;
+            padding: 10px;
+            border: 2px dotted #ffffff;
+            border-radius: 10px;
+            width: 300px;
+            height: 300px;
+            background-color: transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container img{
+            height: '100%';
+            width: '100%';
+        }
+        .result-container {
+            border: 2px dotted #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.3);
+            margin-top: 20px;
+            overflow: hidden;
+        }
+
+        .result-image {
+            width: 37vh;
+            height: 33vh;
+            display: none;
+        }
+
+        .result-name {
+            margin-top: 10px;
+            font-size: 1.5em;
+            color: #f5f5f5;
+            text-align: center;
+        }
+
+        .all-images {
+            display: flex;
+            flex-direction: column; /* Stack groups vertically */
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .image-group {
+            display: flex;
+            justify-content: center; /* Center the images */
+            align-items: flex-start; /* Align items at the top */
+            flex-wrap: wrap; /* Allow wrapping */
+            gap: 10px; /* Space between images */
+        }
+
+        .image-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            margin: 10px; /* Add some margin around each image item */
+        }
+
+        .image-item img {
+            width: 100px; /* Set a fixed width for images */
+            height: 100px; /* Set a fixed height for images */
+            object-fit: cover;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .image-item img:hover {
+            transform: scale(1.1);
+        }
+
+        .image-name {
+            margin-top: 10px;
+            font-size: 1em; /* Smaller font size for names */
+            color: #ebebeb;
+            text-align: center;
+        }
+
+        .reset-button {
+            margin-top: 20px;
+            padding: 20px 40px;
+            font-size: 1.5em;
+            color: #ffffff;
+            background-color: #e43f5a;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: none;
+        }
+
+        .reset-button:hover {
+            background-color: #c33149;
+        }
+
+        .symbol {
+            font-size: 2em;
+            color: #ffffff;
+            margin: 0 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="creature-tool">
+        <h2>Create Your Creature</h2>
+        <p>Click the button below to start creating your fantasy creature!</p>
+
+        <button class="start-button" onclick="showContainers()">Click here to make your own fantasy creature</button>
+
+        <div class="image-container" id="imageContainer">
+            <div class="container" id="container1"></div>
+            <div class="symbol">X</div>
+            <div class="container" id="container2"></div>
+            <div class="symbol">=</div>
+            <div class="result-container" id="resultContainer">
+                <img src="" id="resultImage" class="result-image" alt="Result Image">
+                <div class="result-name" id="resultName"></div>
+            </div>
+        </div>
+
+        <div class="all-images">
+            <div class="image-group" id="group1">
+                <!-- Group 1 images will be added here dynamically -->
+            </div>
+            <div class="image-group" id="group2">
+                <!-- Group 2 images will be added here dynamically -->
+            </div>
+        </div>
+
+        <button class="reset-button" id="resetButton" onclick="resetSelections()">Reset</button>
+    </div>
+
+    <script>
+        const creatures = [
+            { src: "bigfoot.jpg", name: "BIGFOOT" },
+            { src: "centaur.jpg", name: "CENTAUR" },
+            { src: "dragon.jpg", name: "DRAGON" },
+            { src: "goblin.jpg", name: "GOBLIN" },
+            { src: "phoenix.jpg", name: "PHOENIX" },
+            { src: "griffin.jpg", name: "GRIFFIN" },
+            { src: "unicorn.jpg", name: "UNICORN" },
+            { src: "werewolf.jpg", name: "WEREWOLF" },
+            { src: "mermaid.jpg", name: "MERMAID" },
+            { src: "vampire.jpg", name: "VAMPIRE" },
+            { src: "zombie.jpg", name: "ZOMBIE" },
+            { src: "fairy.jpg", name: "FAIRY" }
+        ];
+
+        let selectedCreature1 = '';
+        let selectedCreature2 = '';
+
+        function showContainers() {
+            document.getElementById('imageContainer').style.display = 'flex';
+            document.querySelector('.start-button').style.display = 'none';
+            displayAllImages();
+        }
+
+        function displayAllImages() {
+            const group1Container = document.getElementById('group1');
+            const group2Container = document.getElementById('group2');
+            const halfLength = Math.ceil(creatures.length / 2);
+
+            creatures.forEach((creature, index) => {
+                const imageItem = document.createElement('div');
+                imageItem.className = 'image-item';
+                imageItem.innerHTML = `
+                    <img src="${creature.src}" alt="${creature.name}" onclick="selectImage(${index})">
+                    <div class="image-name">${creature.name}</div>
+                `;
+                if (index < halfLength) {
+                    group1Container.appendChild(imageItem);
+                } else {
+                    group2Container.appendChild(imageItem);
+                }
+            });
+        }
+
+        function selectImage(index) {
+            const selectedCreature = creatures[index];
+            if (!selectedCreature1) {
+                selectedCreature1 = selectedCreature;
+                document.getElementById('container1').innerHTML = `
+                    <img src="${selectedCreature.src}" alt="${selectedCreature.name}" style="width:37vh;height:33vh;">
+                    <div class="image-name">${selectedCreature.name}</div>
+                `;
+            } else if (!selectedCreature2) {
+                selectedCreature2 = selectedCreature;
+                document.getElementById('container2').innerHTML = `
+                    <img src="${selectedCreature.src}" alt="${selectedCreature.name}" style="width:37vh;height:33vh;">
+                    <div class="image-name">${selectedCreature.name}</div>
+                `;
+            }
+            updateResultImage();
+            document.getElementById('resetButton').style.display = 'inline-block';
+        }
+
+        function updateResultImage() {
+            if (selectedCreature1 && selectedCreature2) {
+                const resultImage = document.getElementById('resultImage');
+                const resultName = document.getElementById('resultName');
+                resultImage.src = `${selectedCreature1.name.toLowerCase()}${selectedCreature2.name.toLowerCase()}.jpg`;
+                resultImage.style.display = 'block';
+                resultName.textContent = `${selectedCreature1.name} & ${selectedCreature2.name}`;
+            }
+        }
+
+        function resetSelections() {
+            selectedCreature1 = '';
+            selectedCreature2 = '';
+            document.getElementById('container1').innerHTML = '';
+            document.getElementById('container2').innerHTML = '';
+            document.getElementById('resultImage').style.display = 'none';
+            document.getElementById('resultName').textContent = '';
+            document.getElementById('resetButton').style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>

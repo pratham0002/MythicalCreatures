@@ -1,0 +1,329 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-image: url('bg3.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+*{
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.headerText{
+    font-size: 3.5rem;
+margin-bottom: auto;
+animation: fadeInUp 1s ease-in-out;
+font-weight: bold;
+text-align: center;
+}
+
+/* Transparent Navbar */
+header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.3); /* Transparent */
+    backdrop-filter: blur(10px); /* Optional blur */
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    color: #ebebeb;
+    margin-left: 20px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin-right: 20px;
+}
+
+nav ul li {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+    
+
+nav ul li a {
+    color: #f5f5f5;
+    text-decoration: none;
+    padding: 10px;
+    transition: background-color 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+
+/* First Page - Fullscreen Flex Layout */
+.first-page {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Vertically center the content */
+    height: 100vh; /* Take full viewport height */
+    padding: 0 20px;
+    box-sizing: border-box;
+}    
+
+.left-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 20px;
+    text-align: left;
+}
+
+.left-content h2 {
+    font-size: xx-large;
+    animation: fadeInUp 1s ease-in-out;
+    font-size: 3rem;
+margin-bottom: auto;
+animation: fadeInUp 1s ease-in-out;
+font-weight: bold;
+}
+
+.left-content p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    animation: fadeInUp 1.2s ease-in-out;
+}
+
+.button-group {
+    display: flex;
+
+    gap: 15px;
+}
+
+.button-group button {
+    padding: 10px 20px;
+    background-color: #e43f5a; /* Make the button transparent */
+    border: 2px solid #3d3334; /* Add a border matching the theme color */
+    color: #f5f5f5; /* Ensure the text color matches the theme */
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    animation: fadeInUp 1.4s ease-in-out;
+}
+
+.button-group button:hover {
+  background-color: transparent; /* Change background on hover */
+    color: #fff; 
+   
+}
+
+/* Right side image grid */
+.right-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+.image-grid img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Responsive grid layout for creatures section */
+.grid-layout .creature-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px;
+    overflow-y: auto; /* Enable scrolling if content exceeds viewport */
+}
+
+.container img{
+    height: '100%';
+    width: '100%';
+}
+
+.creature {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 30px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeInUp 1.6s ease-in-out;
+}
+
+.creature p{
+    font-size: 1.3rem;
+    font-family: poppins;
+}
+
+.creature h3 {
+    font-size: 2.3rem;
+}
+
+.creature img {
+    width: 12rem;
+    height: 12rem;
+    border-radius: 50%;
+}
+
+/* Centering for Lore & Legends section */
+#lore {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+#lore h2 {
+    margin-bottom: 20px;
+    animation: fadeInDown 1s ease-in-out;
+}
+
+#lore p {
+    font-size: 18px;
+    max-width: 600px;
+    margin-bottom: 30px;
+    animation: fadeInDown 1.2s ease-in-out;
+}
+
+/* Centering for Interactive section */
+#interactive {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+#interactive h2 {
+    margin-bottom: 20px;
+    animation: fadeInDown 1s ease-in-out;
+}
+
+#interactive p {
+    font-size: 18px;
+    max-width: 600px;
+    margin-bottom: 30px;
+    animation: fadeInDown 1.2s ease-in-out;
+}
+
+#interactive button {
+    padding: 10px 20px;
+    background-color: #e43f5a;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#interactive button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Footer centering */
+footer {
+    background-color: #162447;
+    text-align: center;
+    padding: 10px;
+    color: #f5f5f5;
+}
+
+
+
+/* Keyframe animations */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+@media (max-width: 768px) {
+    
+.left-content h2 {
+    font-size: 2rem;
+    text-align: center;
+}
+    
+.left-content p {
+    font-size: 1rem;
+    text-align: center;
+}
+
+
+.button-group{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.button-group button {
+    padding: 5px 10px ;
+    font-size: 1rem;
+}
+
+.headerText{
+    margin-top: 2rem;
+    font-size: 2.5rem;
+
+}
+    
+    .first-page {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: center;
+    }
+
+    .right-content {
+        margin-top: 20px;
+    }
+
+    .grid-layout .creature-container {
+        grid-template-columns: 1fr; /* 1 column on small screens */
+    }
+}

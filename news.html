@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Shadows+Into+Light&display=swap");
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    /* For Webkit Browsers */
+::-webkit-scrollbar {
+    width: 6px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(32, 32, 32, 0.227); /* Grey with low opacity */
+    border-radius: 10px;
+}
+
+/* For Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(128, 128, 128, 0.145) transparent;
+}
+
+
+    .shodowRegular {
+      font-family: "Shadows Into Light", cursive;
+      font-weight: 400;
+      font-style: normal;
+    }
+    .shodowBold {
+      font-family: "Shadows Into Light", cursive;
+      font-weight: 700;
+      letter-spacing: 1px;
+      font-style: normal;
+    }
+
+    body {
+      background: black;
+      color: white;
+    }
+    .headerText {
+      font-size: 3.5rem;
+      margin-bottom: auto;
+      animation: fadeInUp 1s ease-in-out;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background-color: rgba(0, 0, 0, 0.072);
+      backdrop-filter: blur(10px);
+      padding: 2rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      color: wheat;
+      margin-left: 20px;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin-right: 20px;
+    }
+
+    nav ul li {
+      display: inline-block;
+      margin: 0 10px;
+    }
+
+    nav ul li a {
+      color: #f5f5f5;
+      text-decoration: none;
+      padding: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: wheat;
+      border-radius: 5px;
+    }
+
+    .newsPage {
+      display: grid;
+      grid-template-columns: 2.5fr 1fr;
+    }
+
+    .left {
+      padding: 0 5rem 5rem 5rem ;
+      height: 78vh;
+      overflow: scroll;
+    }
+
+
+    .newsPage .left h1 {
+        color: wheat;
+      margin: 2rem 1.5rem 0rem 0.5rem;
+    }
+    .newsPage .left h2 {
+      font-size: 1.5rem;
+      margin: 2rem 1.5rem 0rem 0.5rem;
+    }
+    .newsPage .left p {
+      color: rgba(255, 255, 255, 0.742);
+      margin: 2rem 1.5rem 0rem 0.5rem;
+    }
+    .newsPage .left h3 {
+      font-size: 2rem;
+      margin: 2rem 6.5rem 1rem -0.5rem;
+      color: wheat;
+    }
+    .newsPage .left h4 {
+      font-size: 2rem;
+      margin: 2rem 6.5rem 1rem -0.5rem;
+    }
+    .newsPage .left ol {
+      margin: 3rem 1.5rem 4rem 1.5rem;
+    }
+
+    .newsImage {
+      background: url(/images/news1.webp) no-repeat center / cover;
+      height: 21rem;
+      width: 92%;
+      border-radius: .5rem;
+    }
+    .right {
+        padding: 2rem 1rem;
+        height: 78vh;
+        overflow: scroll;
+    }
+
+    .right h1{
+        margin-bottom: 1rem;
+        color: wheat;
+    }
+
+    .right h2{
+        font-size: 1.2rem;
+    }
+
+    .right h3{
+        font-size: 1rem;
+    }
+
+
+    .newsBox div{
+        height: 12rem;
+        border-radius: .5rem;
+        width: 100%;
+        cursor: pointer;
+        transition: all .4s ease;
+    }
+
+    .newsBox div:hover{
+        transform: scale(1.05);
+        box-shadow: 0 0 10px 0 rgba(128, 128, 128, 0.803);
+    }
+   
+
+    #news2Image{
+      
+        background: url('/images/news2.jpg') no-repeat center / cover;
+    }
+    #news3Image{
+      
+        background: url('/images/news3.jpg') no-repeat center / cover;
+    }
+    #news4Image{
+      
+        background: url('./images/new4.webp') no-repeat center / cover;
+    }
+    #news5Image{
+    
+        background: url('./images/news5.webp') no-repeat center / cover;
+    }
+    #news6Image{
+    
+        background: url('./images/news1.webp') no-repeat center / cover;
+    }
+
+        .newsBox{
+            margin: 2rem 0;
+            border-bottom: 1px solid grey;
+            padding-bottom: 2rem;
+        }
+
+        .searchBox{
+            position: relative;
+
+        }
+    #searchInput{
+            background: transparent;
+            outline: none;
+            color: white;
+            border: none;
+            border: 1px solid grey;
+            padding: .5rem 2rem;
+            border-radius: .5rem;
+            font-size: 1rem;
+    }
+
+    .searchBox::after {
+        content: "";
+        position: absolute;
+        background: url(./images/searchIcon.png) no-repeat center / cover;
+        width: 1.5rem;
+        height: 1.5rem;
+        top: .5rem;
+        right: 3rem;
+        opacity: 0.5;
+    }
+
+    .right h1{
+        margin: 2rem 0;
+    }
+    .right h2{
+        font-size: 1.5rem;
+        color: wheat;
+        margin: 1rem 0;
+    }
+
+ 
+
+    @media (max-width: 768px) {
+      .newsPage {
+        grid-template-columns: 1fr;
+        margin-top: 7rem;
+    }
+    .right{
+      height: auto;
+      overflow: none;
+      
+    }
+    .left{
+      height: auto;
+    }
+    .newsPage .left h3 {
+      font-size: 1.5rem;
+      color: wheat;
+      margin: 2rem;
+      text-align: center;
+  }
+    .newsPage .left h4 {
+      font-size: 1.5rem;
+      margin: 1rem;
+      text-align: center;
+  }
+    .newsImage{
+      width: 100%;
+    }
+      .left{
+        padding: 1rem;
+      }
+      header{
+        flex-direction: column;
+        position: fixed;
+        padding-bottom: 1rem;
+        padding: 0;
+        gap: 1rem;
+        padding-bottom: 1rem;
+      }
+          nav ul {
+              list-style: none;
+              padding: 0;
+              display: flex;
+              gap: 0;
+              margin: 0;
+          }
+          nav ul li{
+              margin: 0;
+          }
+          .first-page {
+            
+              padding: 10rem 30px 30px 30px;
+          }
+          nav ul li a {
+              color: #f5f5f5;
+              text-decoration: none;
+              transition: background-color 0.3s ease;
+              text-align: center;
+              margin: 0 0.2rem;
+              font-size: .9rem;
+              border: 1px solid grey;
+              padding: .2rem .2rem;
+              border-radius: .4rem;
+          }
+        }
+  </style>
+  <body>
+    <header>
+      <h1 class="shodowBold">Fantasy Creatures</h1>
+      <nav>
+        <ul>
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./index.html#creatures">Creatures</a></li>
+          <li><a href="#lore">Lore & Legends</a></li>
+          <li><a href="./index.html#interactive">Interactive</a></li>
+         
+        </ul>
+      </nav>
+    </header>
+    <div class="newsPage">
+      <div class="left">
+        <div class="newsImage"></div>
+        <h1 class="shodowRegular" id="imageHeading">Tatzelwurm</h1>
+        <h2>Mythical Dragons</h2>
+        <p>
+          The Tatzelwurm, also known as the Stollenwurm or Stollwurm, is a
+          mythical creature from Alpine folklore. This fascinating dragon-like
+          being is said to inhabit the remote and rugged landscapes of the Alps,
+          particularly in Austria, Switzerland, and Germany.
+        </p>
+        <p>
+          Described as having a serpentine body, feline or reptilian head, and
+          sometimes short limbs, this mythical dragon has captivated
+          imaginations for centuries. Historical accounts and sightings, such as
+          those documented by Swiss naturalist Johann Jakob Scheuchzer, have
+          kept the legend alive.
+        </p>
+        <p>
+          One charming tribute to this creature is the Tatzelwurm Fountain in
+          Kobern-Gondorf, Germany. The Stollenwurm continues to inspire popular
+          culture and remains a symbol of mystery and adventure in the Alpine
+          wilderness.
+        </p>
+        <h3 class="shodowRegular">
+          Unveiling the Tatzelwurm: The Mystical Dragon of Alpine Folklore
+        </h3>
+        <h4 class="shodowRegular">Table of Contents:</h4>
+        <ol>
+          <li>Introduction – Unveiling the Tatzelwurm</li>
+          <li>
+            Appearance of the Tatzelwurm – Descriptions and Characteristics
+          </li>
+          <li>Historical Encounters – 18th and 19th Century Sightings</li>
+          <li>The Tatzelwurm Fountain – The Fountain in Kobern-Gondorf</li>
+          <li>
+            The Stollwurm in Popular Culture – Literature, Films, and Video
+            Games
+          </li>
+          <li>The Enduring Legacy – The Tatzelwurm Today</li>
+        </ol>
+
+        <p>
+          Deep within the heart of the Alps, where the air is crisp and the
+          mountains seem to touch the heavens, there exists a legend that
+          hascaptivated the imaginations of locals and adventurers alike for
+          centuries.
+        </p>
+        <p>
+          This tale, rich in mystery and wonder, is about a creature known as
+          the Tatzelwurm. Also referred to as the Daazlwurm or Stollwurm, this
+          mythical dragon-like being has woven itself into the fabric of Alpine
+          folklore, creating a tapestry of stories that continue to intrigue and
+          entertain.
+        </p>
+      </div>
+      <div class="right">
+        <div class="searchBox">
+            <input type="text" name="" id="searchInput" placeholder="Search..." id="">
+        </div>
+        <h1 class="shodowRegular">Lore and Legends</h1>
+        <div class="newsBox">
+            <div id="news2Image"></div>
+        <h2 class="shodowRegular">Banshee</h2>
+        <h3>In the vast realm of Irish folklore and mythology, few entities are as captivating and haunting as the banshee. Originating… Read more</h3>
+        </div>
+        <div class="newsBox">
+            <div id="news3Image"></div>
+        <h2 class="shodowRegular">Wraiths</h2>
+        <h3>Wraiths can appear in many forms.  They are often portrayed as dark shadow-like entities wearing black, hooded cloaks. If seen,… Read more</h3>
+        </div>
+        <div class="newsBox">
+            <div id="news4Image"></div>
+        <h2 class="shodowRegular">Skeletal Warriors</h2>
+        <h3>In the vast realm of Irish folklore and mythology, few… Read more</h3>
+        </div>
+        <div class="newsBox">
+            <div id="news5Image"></div>
+        <h2 class="shodowRegular">Wendigo</h2>
+        <h3>Wendigo have a very thin and skin on bone appearance.  This eerie mythical creature also has a disfigured face with…Read more</h3>
+        </div>
+        <div class="newsBox">
+            <div id="news6Image"></div>
+        <h2 class="shodowRegular">Tatzelwurm</h2>
+        <h3> The Tatzelwurm, also known as the Stollenwurm or Stollwurm, is a
+          mythical creature from Alpine folklore. This fascinating dragon-like
+          being is said to inhabit the remote and rugged landscapes of the Alps,
+          particularly in Austria, Switzerland, and Germany.</h3>
+        </div>
+       
+    </div>
+    </div>
+  </body>
+
+
+  <script>
+    let image1 = document.querySelector('.newsImage');
+    let image2 = document.querySelector('#news2Image')
+    let image3 = document.querySelector('#news3Image')
+    let image4 = document.querySelector('#news4Image')
+    let image5 = document.querySelector('#news5Image')
+    let image6 = document.querySelector('#news6Image')
+
+
+    let imageHeading = document.querySelector('#imageHeading')
+
+
+
+    image2.addEventListener('click', () => {
+        imageHeading.innerHTML = "Banshee"
+        image1.style.background = "url('/images/news2.jpg') no-repeat center / cover"
+    })
+    image3.addEventListener('click', () => {
+        imageHeading.innerHTML = "Wraiths "
+        image1.style.background = "url('images/news3.jpg') no-repeat center / cover"
+    })
+    image4.addEventListener('click', () => {
+        imageHeading.innerHTML = " Skeletal Warriors"
+        image1.style.background = "url('/images/new4.webp') no-repeat center / cover"
+    })
+    image5.addEventListener('click', () => {
+        imageHeading.innerHTML = "Wendigo "
+        image1.style.background = "url('/images/news5.webp') no-repeat center / cover"
+    })
+    image6.addEventListener('click', () => {
+        imageHeading.innerHTML = "Tatzelwurm "
+        image1.style.background = "url('/images/news1.webp') no-repeat center / cover"
+    })
+  </script>
+</html>

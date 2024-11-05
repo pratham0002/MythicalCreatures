@@ -2,294 +2,729 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Your Creature</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-image: url('bg3.jpg');
-            background-size: cover;
-            background-position: center;
-            color: #f5f5f5;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Your Creature</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        .creature-tool {
-            text-align: center;
-            padding: 40px 20px;
-            margin-top: 50px;
-        }
+    body {
+      font-family: "Arial", sans-serif;
+      background-size: cover;
+      color: #f5f5f5;
+      overflow-x: hidden;
+      position: relative;
+      background: black;
+      height: 100vh;
+    }
+    .bgImage{
+      top: 0;
+      background: url('./interactiveBG.webp') no-repeat center/cover;
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      opacity: 0.3;
 
-        .creature-tool h2 {
-            font-size: 5em;
-            margin-bottom: 20px;
-        }
+    }
 
-        .creature-tool p {
-            font-size: 20px;
-            max-width: 700px;
-            margin: 20px auto;
-            color: #ebebeb;
-        }
+    .headerText {
+      font-size: 3.5rem;
+      margin-bottom: auto;
+      animation: fadeInUp 1s ease-in-out;
+      font-weight: bold;
+      text-align: center;
+      color: wheat;
+    }
 
-        .start-button {
-            padding: 20px 40px;
-            font-size: 1.5em;
-            background-color: #e43f5a;
-            color: #ffffff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+    /* Transparent Navbar */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 2rem;
+      background-color: rgba(0, 0, 0, 0.3);
+      /* Transparent */
+      backdrop-filter: blur(10px);
+      /* Optional blur */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-        .start-button:hover {
-            background-color: #c33149;
-        }
+    header h1 {
+      color: #ebebeb;
+      margin-left: 20px;
+    }
 
-        .image-container {
-            display: none;
-            justify-content: center;
-            align-items: center;
-            margin: 40px 0;
-            gap: 20px;
-        }
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin-right: 20px;
+    }
 
-        .container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            margin: 0 20px;
-            padding: 10px;
-            border: 2px dotted #ffffff;
-            border-radius: 10px;
-            width: 300px;
-            height: 300px;
-            background-color: transparent;
-            position: relative;
-            overflow: hidden;
-        }
+    nav ul li {
+      display: inline-block;
+      margin: 0 10px;
+    }
 
-        .container img{
-            height: '100%';
-            width: '100%';
-        }
-        .result-container {
-            border: 2px dotted #ffffff;
-            padding: 20px;
-            border-radius: 10px;
-            width: 300px;
-            height: 300px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background-color: rgba(0, 0, 0, 0.3);
-            margin-top: 20px;
-            overflow: hidden;
-        }
+    .shadowRegular {
+      font-family: "Shadows Into Light", cursive;
+      font-weight: 400;
+      font-style: normal;
+      color: white !important;
+    }
 
-        .result-image {
-            width: 37vh;
-            height: 33vh;
-            display: none;
-        }
+    .shadowBold {
+      font-family: "Shadows Into Light", cursive;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: wheat !important;
+      font-style: normal;
+    }
 
-        .result-name {
-            margin-top: 10px;
-            font-size: 1.5em;
-            color: #f5f5f5;
-            text-align: center;
-        }
+    nav ul li a {
+      color: #f5f5f5;
+      text-decoration: none;
+      padding: 10px;
+      transition: background-color 0.3s ease;
+    }
 
-        .all-images {
-            display: flex;
-            flex-direction: column; /* Stack groups vertically */
-            justify-content: center;
-            align-items: center;
-            margin-top: 20px;
-        }
+    nav ul li a:hover {
+      border-radius: 5px;
+      color: wheat;
+    }
 
-        .image-group {
-            display: flex;
-            justify-content: center; /* Center the images */
-            align-items: flex-start; /* Align items at the top */
-            flex-wrap: wrap; /* Allow wrapping */
-            gap: 10px; /* Space between images */
-        }
+    /* For Webkit Browsers */
+    ::-webkit-scrollbar {
+      width: 6px;
+      /* Width of the scrollbar */
+    }
 
-        .image-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
-            margin: 10px; /* Add some margin around each image item */
-        }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
 
-        .image-item img {
-            width: 100px; /* Set a fixed width for images */
-            height: 100px; /* Set a fixed height for images */
-            object-fit: cover;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
+    ::-webkit-scrollbar-thumb {
+      background-color: rgba(32, 32, 32, 0.227);
+      /* Grey with low opacity */
+      border-radius: 10px;
+    }
 
-        .image-item img:hover {
-            transform: scale(1.1);
-        }
+    .creature-tool {
+      text-align: center;
+      padding-top: 6.3rem;
+    }
 
-        .image-name {
-            margin-top: 10px;
-            font-size: 1em; /* Smaller font size for names */
-            color: #ebebeb;
-            text-align: center;
-        }
+    .creature-tool h2 {
+      font-size: 2.2rem;
+      color: #ffffff;
+    }
 
-        .reset-button {
-            margin-top: 20px;
-            padding: 20px 40px;
-            font-size: 1.5em;
-            color: #ffffff;
-            background-color: #e43f5a;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            display: none;
-        }
+    .creature-tool p {
+      font-size: 1.2rem;
+      color: #ebebeba1 !important;
+    }
 
-        .reset-button:hover {
-            background-color: #c33149;
-        }
+    .image-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      margin: 40px 0;
+    }
 
-        .symbol {
-            font-size: 2em;
-            color: #ffffff;
-            margin: 0 20px;
+    .container1and2{
+      display: flex;
+      gap: 0;
+      justify-content: center;
+      align-items: center;
+    }
+    .resultContainerMain{
+      display: flex;
+      gap: 0;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px;
+      border-radius: 10px;
+      height: 24rem;
+      overflow-y: auto;
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+
+    .container img{
+      border-radius: 1rem;
+    }
+
+    .result-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px;
+      border-radius: 10px;
+      width: 18rem;
+      height: 24rem;
+      overflow-y: auto;
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+    .btn {
+      padding: 10px 20px;
+      background-color: black; /* Make the button transparent */
+      border: 2px solid #3d3334; /* Add a border matching the theme color */
+      color: #f5f5f5; /* Ensure the text color matches the theme */
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      width: 10rem;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      animation: fadeInUp 1.4s ease-in-out;
+  }
+  
+  .btn:hover {
+    background-color: transparent; /* Change background on hover */
+      color: wheat; 
+      box-shadow: 2px 2px 10px -4px wheat;
+     
+  }
+
+    .imageHeightWidth{
+      width: 15rem;
+      height: 15rem;
+    }
+    .result-image {
+      width: 15rem;
+      height: 15rem;
+      border-radius: 1rem;
+      display: none;
+    }
+
+    .result-name {
+      margin-top: 10px;
+      font-size: 1.2em;
+      color: #f5f5f5;
+
+    }
+
+    .image-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      margin: 10px 0;
+    }
+
+    .image-item img {
+      width: 100%;
+      height: 13rem;
+      width: 13rem;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .image-item img:hover {
+      transform: scale(1.04);
+    }
+
+    .image-name {
+      margin-top: 5px;
+      font-size: 1.2rem;
+    }
+
+      .symbol {
+        font-size: 2.1rem;
+        color: #ffffff;
+        font-family: cursive;
+        font-weight: bold;
+        margin-bottom: 8rem;
+    }
+
+    .equalSymbol{
+      font-size: 3.4rem;
+    }
+
+    .reset-button {
+  
+      display: none;
+    }
+
+  
+
+    .loader {
+      display: none;
+      width: 112px;
+      height: 112px;
+      margin-top: 3rem;
+      margin-left: 3rem;
+    }
+
+    .box1,
+    .box2,
+    .box3 {
+      border: 10px solid #f5f5f565;
+      box-sizing: border-box;
+      position: absolute;
+      display: block;
+    }
+
+    .box1 {
+      width: 112px;
+      height: 48px;
+      margin-top: 64px;
+      margin-left: 0px;
+      animation: abox1 1s forwards ease-in-out infinite;
+    }
+
+    .box2 {
+      width: 48px;
+      height: 48px;
+      margin-top: 0px;
+      margin-left: 0px;
+      animation: abox2 1s forwards ease-in-out infinite;
+    }
+    
+
+    .box3 {
+      width: 48px;
+      height: 48px;
+      margin-top: 0px;
+      margin-left: 64px;
+      animation: abox3 1s forwards ease-in-out infinite;
+    }
+
+    @keyframes abox1 {
+      0% {
+        width: 112px;
+        height: 48px;
+        margin-top: 64px;
+        margin-left: 0px;
+      }
+
+      12.5% {
+        width: 48px;
+        height: 48px;
+        margin-top: 64px;
+        margin-left: 0px;
+      }
+
+      25% {
+        width: 48px;
+        height: 48px;
+        margin-top: 64px;
+        margin-left: 0px;
+      }
+
+      37.5% {
+        width: 48px;
+        height: 48px;
+        margin-top: 64px;
+        margin-left: 0px;
+      }
+
+      50% {
+        width: 48px;
+        height: 48px;
+        margin-top: 64px;
+        margin-left: 0px;
+      }
+
+      62.5% {
+        width: 48px;
+        height: 48px;
+        margin-top: 64px;
+        margin-left: 0px;
+      }
+
+      75% {
+        width: 48px;
+        height: 112px;
+        margin-top: 0px;
+        margin-left: 0px;
+      }
+
+      87.5% {
+        width: 48px;
+        height: 48px;
+        margin-top: 0px;
+        margin-left: 0px;
+      }
+
+      100% {
+        width: 48px;
+        height: 48px;
+        margin-top: 0px;
+        margin-left: 0px;
+      }
+    }
+
+    @keyframes abox2 {
+      0% {
+        width: 48px;
+        height: 48px;
+        margin-top: 0px;
+        margin-left: 0px;
+      }
+
+      12.5% {
+        width: 48px;
+        height: 48px;
+        margin-top: 0px;
+        margin-left: 0px;
+      }
+
+      25% {
+        width: 48px;
+        height: 48px;
+        margin-top: 0px;
+        margin-left: 0px;
+      }
+
+      37.5% {
+        width: 48px;
+        height: 48px;
+        margin-top: 0px;
+        margin-left: 0px;
+      }
+
+      50% {
+        width: 112px;
+        height: 48px;
+        margin-top: 0px;
+        margin-left: 0px;
+      }
+
+      62.5% {
+        width: 48px;
+        height: 48px;
+        margin-top: 0px;
+        margin-left: 64px;
+      }
+
+      75% {
+        width: 48px;
+        height: 48px;
+        margin-top: 0px;
+        margin-left: 64px;
+      }
+
+      87.5% {
+        width: 48px;
+        height: 48px;
+        margin-top: 0px;
+        margin-left: 64px;
+      }
+
+      100% {
+        width: 48px;
+        height: 48px;
+        margin-top: 0px;
+        margin-left: 64px;
+      }
+    }
+
+    @keyframes abox3 {
+      0% {
+        width: 48px;
+        height: 48px;
+        margin-top: 0px;
+        margin-left: 64px;
+      }
+
+      12.5% {
+        width: 48px;
+        height: 48px;
+        margin-top: 0px;
+        margin-left: 64px;
+      }
+
+      25% {
+        width: 48px;
+        height: 112px;
+        margin-top: 0px;
+        margin-left: 64px;
+      }
+
+      37.5% {
+        width: 48px;
+        height: 48px;
+        margin-top: 64px;
+        margin-left: 64px;
+      }
+
+      50% {
+        width: 48px;
+        height: 48px;
+        margin-top: 64px;
+        margin-left: 64px;
+      }
+
+      62.5% {
+        width: 48px;
+        height: 48px;
+        margin-top: 64px;
+        margin-left: 64px;
+      }
+
+      75% {
+        width: 48px;
+        height: 48px;
+        margin-top: 64px;
+        margin-left: 64px;
+      }
+
+      87.5% {
+        width: 48px;
+        height: 48px;
+        margin-top: 64px;
+        margin-left: 64px;
+      }
+
+      100% {
+        width: 112px;
+        height: 48px;
+        margin-top: 64px;
+        margin-left: 0px;
+      }
+    }
+
+    .creatureHeader{
+      display: flex ; justify-content: center; align-items: center; gap: 4rem
+    }
+
+
+    @media (max-width: 768px) {
+      .imageHeightWidth{
+        height: 10rem;
+        width: 10rem;
+      }
+      .loader{
+      
+        margin-left: 0;
+      }
+
+      .symbol {
+      
+        margin-bottom: 3rem;
+    }
+      .container {
+        height: 17rem;
+      }
+
+
+      
+      .creatureHeader{
+        flex-direction: column;
+      }
+      .equalSymbol{
+        margin: 0;
+      }
+      .resultContainerMain {
+     
+        flex-direction: column;
+    }
+      .image-container{
+        flex-direction: column;
+      }
+      .image-item img {
+        width: 100%;
+        height: 10rem;
+        width: 10rem;
+      }
+      header{
+        flex-direction: column;
+        position: fixed;
+        padding-bottom: 1rem;
+        padding: 0;
+        gap: 1rem;
+        padding-bottom: 1rem;
+      }
+          nav ul {
+              list-style: none;
+              padding: 0;
+              display: flex;
+              gap: 0;
+              margin: 0;
+          }
+          nav ul li{
+              margin: 0;
+          }
+          .first-page {
+            
+              padding: 10rem 30px 30px 30px;
+          }
+          nav ul li a {
+              color: #f5f5f5;
+              text-decoration: none;
+              transition: background-color 0.3s ease;
+              text-align: center;
+              margin: 0 0.2rem;
+              font-size: .9rem;
+              border: 1px solid grey;
+              padding: .2rem .2rem;
+              border-radius: .4rem;
+          }
         }
-    </style>
+  </style>
 </head>
 
 <body>
+  <div class="bgImage"></div>
+  <header>
+    <h1 class="shadowBold">Fantasy Creatures</h1>
+    <nav>
+      <ul>
+        <li><a href="./index.html">Home</a></li>
+        <li><a href="#creatures">Creatures</a></li>
+        <li><a href="./news.html">Lore & Legends</a></li>
+        <li><a href="#interactive">Interactive</a></li>
+        
+      </ul>
+    </nav>
+  </header>
 
-    <div class="creature-tool">
-        <h2>Create Your Creature</h2>
-        <p>Click the button below to start creating your fantasy creature!</p>
-
-        <button class="start-button" onclick="showContainers()">Click here to make your own fantasy creature</button>
-
-        <div class="image-container" id="imageContainer">
-            <div class="container" id="container1"></div>
-            <div class="symbol">X</div>
-            <div class="container" id="container2"></div>
-            <div class="symbol">=</div>
-            <div class="result-container" id="resultContainer">
-                <img src="" id="resultImage" class="result-image" alt="Result Image">
-                <div class="result-name" id="resultName"></div>
-            </div>
-        </div>
-
-        <div class="all-images">
-            <div class="image-group" id="group1">
-                <!-- Group 1 images will be added here dynamically -->
-            </div>
-            <div class="image-group" id="group2">
-                <!-- Group 2 images will be added here dynamically -->
-            </div>
-        </div>
-
-        <button class="reset-button" id="resetButton" onclick="resetSelections()">Reset</button>
+  <div class="creature-tool">
+    <div class="creatureHeader">
+      <div>
+        <h2 class="shadowBold">Create Your Creature</h2>
+        <p class="shadowRegular">
+          Select two creatures to create your own new creature!
+        </p>
+      </div>
+      <button class="btn reset-button" id="resetButton" onclick="resetSelections()">
+        Reset
+      </button>
     </div>
 
-    <script>
-        const creatures = [
-            { src: "bigfoot.jpg", name: "BIGFOOT" },
-            { src: "centaur.jpg", name: "CENTAUR" },
-            { src: "dragon.jpg", name: "DRAGON" },
-            { src: "goblin.jpg", name: "GOBLIN" },
-            { src: "phoenix.jpg", name: "PHOENIX" },
-            { src: "griffin.jpg", name: "GRIFFIN" },
-            { src: "unicorn.jpg", name: "UNICORN" },
-            { src: "werewolf.jpg", name: "WEREWOLF" },
-            { src: "mermaid.jpg", name: "MERMAID" },
-            { src: "vampire.jpg", name: "VAMPIRE" },
-            { src: "zombie.jpg", name: "ZOMBIE" },
-            { src: "fairy.jpg", name: "FAIRY" }
-        ];
+    <div class="image-container" id="imageContainer">
+      <div class="container1and2">
+        <div class="container" id="container1"></div>
+        <div class="symbol">X</div>
+        <div class="container" id="container2"></div>
+      </div>
+    
+      <div class="resultContainerMain">
+        <div class="symbol equalSymbol">=</div>
+        <div class="result-container" id="resultContainer">
+          <div class="loader">
+            <div class="box1"></div>
+            <div class="box2"></div>
+            <div class="box3"></div>
+          </div>
+          <img src="" id="resultImage" class="result-image" alt="Result Image" />
+          <div class="result-name shadowBold" id="resultName"></div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
 
-        let selectedCreature1 = '';
-        let selectedCreature2 = '';
+  <script>
+    const creatures = [
+      { src: "./images/bigfoot.jpg", name: "BIGFOOT" },
+      { src: "./images/centaur.jpg", name: "CENTAUR" },
+      { src: "./images/dragon.jpg", name: "DRAGON" },
+      { src: "./images/goblin.jpg", name: "GOBLIN" },
+      { src: "./images/phoenix.jpg", name: "PHOENIX" },
+      { src: "./images/griffin.jpg", name: "GRIFFIN" },
+      { src: "./images/unicorn.jpg", name: "UNICORN" },
+      { src: "./images/werewolf.jpg", name: "WEREWOLF" },
+      { src: "./images/mermaid.jpg", name: "MERMAID" },
+      { src: "./images/vampire.jpg", name: "VAMPIRE" },
+      { src: "./images/zombie.jpg", name: "ZOMBIE" },
+      { src: "./images/fairy.jpg", name: "FAIRY" },
+    ];
 
-        function showContainers() {
-            document.getElementById('imageContainer').style.display = 'flex';
-            document.querySelector('.start-button').style.display = 'none';
-            displayAllImages();
-        }
+    let selectedCreature1 = "";
+    let selectedCreature2 = "";
 
-        function displayAllImages() {
-            const group1Container = document.getElementById('group1');
-            const group2Container = document.getElementById('group2');
-            const halfLength = Math.ceil(creatures.length / 2);
+    document.getElementById("imageContainer").style.display = "flex";
+    displayCreaturesInContainers();
 
-            creatures.forEach((creature, index) => {
-                const imageItem = document.createElement('div');
-                imageItem.className = 'image-item';
-                imageItem.innerHTML = `
+    function displayCreaturesInContainers() {
+      const container1 = document.getElementById("container1");
+      const container2 = document.getElementById("container2");
+
+      creatures.forEach((creature, index) => {
+        const imageItem = document.createElement("div");
+        imageItem.className = "image-item";
+        imageItem.innerHTML = `
                     <img src="${creature.src}" alt="${creature.name}" onclick="selectImage(${index})">
-                    <div class="image-name">${creature.name}</div>
+                    <div class="image-name shadowRegular">${creature.name}</div>
                 `;
-                if (index < halfLength) {
-                    group1Container.appendChild(imageItem);
-                } else {
-                    group2Container.appendChild(imageItem);
-                }
-            });
+        if (index < creatures.length / 2) {
+          container1.appendChild(imageItem);
+        } else {
+          container2.appendChild(imageItem);
         }
+      });
+    }
 
-        function selectImage(index) {
-            const selectedCreature = creatures[index];
-            if (!selectedCreature1) {
-                selectedCreature1 = selectedCreature;
-                document.getElementById('container1').innerHTML = `
-                    <img src="${selectedCreature.src}" alt="${selectedCreature.name}" style="width:37vh;height:33vh;">
-                    <div class="image-name">${selectedCreature.name}</div>
+    function selectImage(index) {
+      const selectedCreature = creatures[index];
+      if (!selectedCreature1) {
+        selectedCreature1 = selectedCreature;
+        document.getElementById("container1").style.background = "none";
+        document.getElementById("container1").innerHTML = `
+                    <img class="imageHeightWidth" src="${selectedCreature.src}" alt="${selectedCreature.name}">
+                    <div class="image-name shadowRegular">${selectedCreature.name}</div>
                 `;
-            } else if (!selectedCreature2) {
-                selectedCreature2 = selectedCreature;
-                document.getElementById('container2').innerHTML = `
-                    <img src="${selectedCreature.src}" alt="${selectedCreature.name}" style="width:37vh;height:33vh;">
-                    <div class="image-name">${selectedCreature.name}</div>
+      } else if (!selectedCreature2) {
+        selectedCreature2 = selectedCreature;
+        document.getElementById("container2").style.background = "none";
+        document.getElementById("container2").innerHTML = `
+                    <img class="imageHeightWidth" src="${selectedCreature.src}" alt="${selectedCreature.name}">
+                    <div class="image-name shadowRegular">${selectedCreature.name}</div>
                 `;
-            }
-            updateResultImage();
-            document.getElementById('resetButton').style.display = 'inline-block';
-        }
+        updateResultImage();
+      }
+      document.getElementById("resetButton").style.display = "inline-block";
+    }
 
-        function updateResultImage() {
-            if (selectedCreature1 && selectedCreature2) {
-                const resultImage = document.getElementById('resultImage');
-                const resultName = document.getElementById('resultName');
-                resultImage.src = `${selectedCreature1.name.toLowerCase()}${selectedCreature2.name.toLowerCase()}.jpg`;
-                resultImage.style.display = 'block';
-                resultName.textContent = `${selectedCreature1.name} & ${selectedCreature2.name}`;
-            }
-        }
+    function updateResultImage() {
+      console.log("Updated");
+      document.querySelector(".result-container").style.background = "none";
+      document.querySelector(".loader").style.display = "block";
+      
+      setTimeout(() => {
+          window.scrollTo(0, document.body.scrollHeight);
+      }, 100);
+      
+      setTimeout(() => {
+          document.querySelector(".loader").style.display = "none";
+      
+          if (selectedCreature1 && selectedCreature2) {
+              const resultImage = document.getElementById("resultImage");
+              const resultName = document.getElementById("resultName");
+              resultImage.src = `./images/${selectedCreature1.name.toLowerCase()}${selectedCreature2.name.toLowerCase()}.jpg`;
+              resultImage.style.display = "block";
+              resultName.textContent = `${selectedCreature1.name} & ${selectedCreature2.name}`;
+          }
+      }, 2000);
+  }
+  
+    
 
-        function resetSelections() {
-            selectedCreature1 = '';
-            selectedCreature2 = '';
-            document.getElementById('container1').innerHTML = '';
-            document.getElementById('container2').innerHTML = '';
-            document.getElementById('resultImage').style.display = 'none';
-            document.getElementById('resultName').textContent = '';
-            document.getElementById('resetButton').style.display = 'none';
-        }
-    </script>
+    function resetSelections() {
+      selectedCreature1 = "";
+      selectedCreature2 = "";
+      document.getElementById("container1").innerHTML = "";
+      document.getElementById("container2").innerHTML = "";
+      document.getElementById("resultImage").style.display = "none";
+      document.getElementById("resultName").textContent = "";
+      document.getElementById("resetButton").style.display = "none";
+      displayCreaturesInContainers();
+    }
+  </script>
 </body>
 
 </html>

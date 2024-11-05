@@ -1,16 +1,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Shadows+Into+Light&display=swap");
 
 
 body {
     font-family: 'Arial', sans-serif;
-    background-image: url('bg3.jpg');
-    background-size: cover;
-    background-position: center;
+    background: #020202;
     color: #f5f5f5;
     margin: 0;
     padding: 0;
     overflow-x: hidden;
 }
+
+    /* For Webkit Browsers */
+    ::-webkit-scrollbar {
+        width: 6px; /* Width of the scrollbar */
+    }
+    
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background-color: rgba(32, 32, 32, 0.227); /* Grey with low opacity */
+        border-radius: 10px;
+    }
+    
+    /* For Firefox */
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(128, 128, 128, 0.145) transparent;
+    scroll-behavior: smooth;
+
+    }
+    
 
 *{
     font-family: "Poppins", sans-serif;
@@ -18,12 +40,26 @@ body {
     font-style: normal;
 }
 
+
+.shadowRegular {
+    font-family: "Shadows Into Light", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+  .shadowBold {
+    font-family: "Shadows Into Light", cursive;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-style: normal;
+  }
+
 .headerText{
     font-size: 3.5rem;
 margin-bottom: auto;
 animation: fadeInUp 1s ease-in-out;
 font-weight: bold;
 text-align: center;
+color: wheat;
 }
 
 /* Transparent Navbar */
@@ -34,7 +70,6 @@ header {
     z-index: 1000;
     background-color: rgba(0, 0, 0, 0.3); /* Transparent */
     backdrop-filter: blur(10px); /* Optional blur */
-    padding: 20px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -66,17 +101,17 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
     border-radius: 5px;
+    color: wheat;
 }
 
 /* First Page - Fullscreen Flex Layout */
 .first-page {
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Vertically center the content */
+    align-items: flex-start; /* Vertically center the content */
     height: 100vh; /* Take full viewport height */
-    padding: 0 20px;
+    padding: 30px;
     box-sizing: border-box;
 }    
 
@@ -93,6 +128,7 @@ nav ul li a:hover {
     font-size: xx-large;
     animation: fadeInUp 1s ease-in-out;
     font-size: 3rem;
+    color: wheat;
 margin-bottom: auto;
 animation: fadeInUp 1s ease-in-out;
 font-weight: bold;
@@ -111,9 +147,9 @@ font-weight: bold;
     gap: 15px;
 }
 
-.button-group button {
+.btn {
     padding: 10px 20px;
-    background-color: #e43f5a; /* Make the button transparent */
+    background-color: transparent; /* Make the button transparent */
     border: 2px solid #3d3334; /* Add a border matching the theme color */
     color: #f5f5f5; /* Ensure the text color matches the theme */
     font-size: 16px;
@@ -123,12 +159,20 @@ font-weight: bold;
     animation: fadeInUp 1.4s ease-in-out;
 }
 
-.button-group button:hover {
-  background-color: transparent; /* Change background on hover */
-    color: #fff; 
-   
+.btn a{
+    text-decoration: none;
+    color: white;
 }
 
+.btn:hover {
+  background-color: transparent; /* Change background on hover */
+    color: wheat !important; 
+    box-shadow: 2px 2px 10px -4px wheat;
+   
+}
+.btn:hover a {
+ color: wheat;
+}
 /* Right side image grid */
 .right-content {
     flex: 1;
@@ -146,7 +190,7 @@ font-weight: bold;
 
 .image-grid img {
     width: 100%;
-    height: 200px;
+    height: 174px;
     object-fit: cover;
     border-radius: 10px;
 }
@@ -155,7 +199,7 @@ font-weight: bold;
 .grid-layout .creature-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    gap: 3rem;
     padding: 20px;
     overflow-y: auto; /* Enable scrolling if content exceeds viewport */
 }
@@ -166,7 +210,7 @@ font-weight: bold;
 }
 
 .creature {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0);
     padding: 20px;
     border-radius: 30px;
     text-align: center;
@@ -177,12 +221,16 @@ font-weight: bold;
 }
 
 .creature p{
-    font-size: 1.3rem;
+    font-size: 1rem;
     font-family: poppins;
 }
 
+
+
 .creature h3 {
-    font-size: 2.3rem;
+    color: wheat;
+    font-size: 2rem;
+    margin: .4rem 0;
 }
 
 .creature img {
@@ -192,40 +240,67 @@ font-weight: bold;
 }
 
 /* Centering for Lore & Legends section */
-#lore {
+.video-background {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100vh;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+  
+  .video-background video {
+    position: absolute;
+    top: 50%;
+    opacity: 0.3;
+
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
+  
+  .content {
+    position: relative;
+    z-index: 1;
+    color: white;
     text-align: center;
-    padding: 60px 20px;
-}
+  }
+  
 
-#lore h2 {
-    margin-bottom: 20px;
-    animation: fadeInDown 1s ease-in-out;
-}
-
-#lore p {
-    font-size: 18px;
-    max-width: 600px;
-    margin-bottom: 30px;
-    animation: fadeInDown 1.2s ease-in-out;
-}
 
 /* Centering for Interactive section */
 #interactive {
     display: flex;
     flex-direction: column;
+    position: relative;
     justify-content: center;
     align-items: center;
     text-align: center;
+    width: 100%;
+    height: 25rem;
     padding: 60px 20px;
+}
+
+.image{
+    position: absolute;
+    background: url('./images/interactiveBG.webp') no-repeat center/cover;
+    opacity: 0.3;
+    width: 100%;
+    height: 25rem;
+
 }
 
 #interactive h2 {
     margin-bottom: 20px;
     animation: fadeInDown 1s ease-in-out;
+}
+#interactive a {
+    position: relative;
+
 }
 
 #interactive p {
@@ -235,20 +310,6 @@ font-weight: bold;
     animation: fadeInDown 1.2s ease-in-out;
 }
 
-#interactive button {
-    padding: 10px 20px;
-    background-color: #e43f5a;
-    border: none;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-#interactive button:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
 
 /* Footer centering */
 footer {
@@ -257,6 +318,71 @@ footer {
     padding: 10px;
     color: #f5f5f5;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.feature{
+    display: flex;
+    gap: 5rem;
+    flex-direction: column;
+    padding: 4rem;
+}
+.featureBlock{
+    display: grid;
+    gap: 3rem;
+    grid-template-columns: 1fr 1fr;
+}
+
+.featureBlock .content {
+    font-size: 1.1rem;
+    color: rgb(215, 215, 215);
+}
+.featureBlock .content span {
+    font-size: 1.5rem;
+    color: white;
+    font-weight: bold;
+}
+
+#feature1Image{
+    background: url('/images/feature1.jpg') no-repeat center/cover;
+    border-radius: 1rem;
+}
+#feature2Image{
+    background: url('/images/feature2.jpg') no-repeat center/cover;
+    border-radius: 1rem;
+}
+#feature3Image{
+    background: url('/images/feature3.jpg') no-repeat center/cover;
+    border-radius: 1rem;
+}
+
+
+#featureHeading{
+    margin: 5rem 0 2rem 0;
+    color: wheat;
+    text-align: center;
+    font-size: 2.4rem;
+}
+
+
+
+
+
+
+
+
 
 
 
@@ -285,6 +411,59 @@ footer {
 
 
 @media (max-width: 768px) {
+header{
+    flex-direction: column;
+    position: fixed;
+    padding-bottom: 1rem;
+}
+    nav ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        gap: 0;
+        margin: 0;
+    }
+    nav ul li{
+        margin: 0;
+    }
+    .first-page {
+      
+        padding: 10rem 30px 30px 30px;
+    }
+    nav ul li a {
+        color: #f5f5f5;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+        text-align: center;
+        margin: 0 0.2rem;
+        font-size: .9rem;
+        border: 1px solid grey;
+        padding: .2rem .2rem;
+        border-radius: .4rem;
+    }
+    .feature{
+        gap: 5rem;
+        flex-direction: column;
+        padding: 2rem;
+    }
+    #reverseBlocks {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    #interactive{
+        padding: 0;
+    }
+    #feature1Image,
+    #feature2Image,
+    #feature3Image{
+        height: 11rem;
+    }
+
+    .featureBlock{
+        display: grid;
+        gap: 3rem;
+        grid-template-columns: 1fr ;
+    }
     
 .left-content h2 {
     font-size: 2rem;
@@ -306,6 +485,7 @@ footer {
     padding: 5px 10px ;
     font-size: 1rem;
 }
+
 
 .headerText{
     margin-top: 2rem;

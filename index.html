@@ -8,86 +8,118 @@
 </head>
 <body>
     <header>
-        <h1>Fantasy Creatures</h1>
+        <h1 class="shadowBold" style="color: wheat;">Fantasy Creatures</h1>
         <nav>
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#creatures">Creatures</a></li>
-                <li><a href="#lore">Lore & Legends</a></li>
+                <li><a href="./news.html">Lore & Legends</a></li>
                 <li><a href="#interactive">Interactive</a></li>
-                <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
 
     <section id="home" class="first-page">
         <div class="left-content">
-            <h2>Welcome to the World of Fantasy Creatures</h2>
+            <h2 class="shadowBold">Welcome to the World of Fantasy Creatures</h2>
             <p>Explore the magical world filled with dragons, fairies, and mythical beings. Join us on an unforgettable journey into the realm of fantasy and myths.</p>
             <div class="button-group">
-                <button  ><a href="explore.html" style="text-decoration: none; color:white ;">Explore Creatures</a></button>
-                <button>Discover Lore</button>
+               <a href="#featureHeading"> <button class="btn">Explore Creatures</button></a>
+               <a href="#lore"> <button class="btn">Discover Lore</button></a>
             </div>
         </div>
         <div class="right-content">
             <div class="image-grid">
-                <img src="dragon.jpg" alt="Fantasy Image 1">
-                <img src="griffin.jpg" alt="Fantasy Image 2">
-                <img src="bigfoot.jpg" alt="Fantasy Image 3">
-                <img src="basilisk.jpg" alt="Fantasy Image 4">
+                <img src="/images/dragon.jpg" alt="Fantasy Image 1">
+                <img src="/images/griffin.jpg" alt="Fantasy Image 2">
+                <img src="/images/bigfoot.jpg" alt="Fantasy Image 3">
+                <img src="/images/basilisk.jpg" alt="Fantasy Image 4">
             </div>
         </div>
     </section>
-
-    <section id="creatures " class="grid-layout">
-        <h2 class="headerText">Creatures</h2>
+   
+    <section id="creatures" class="grid-layout">
+        <h2 class="headerText shadowBold">Creatures</h2>
         <div class="creature-container">
             <div class="creature">
-                <img src="goblin.jpg" alt="Goblin">
-                <h3>Goblin</h3>
-                <p>
+                <img src="/images/goblin.jpg" alt="Goblin">
+                <h3 class="shadowBold">Goblin</h3>
+                <p class="shadowRegular">
                     Goblins are small, cunning creatures known for their mischievous nature and love of causing trouble. Often found in dark forests or caves, they delight in trickery and stealing treasures. Despite their size, goblins are clever and resourceful, making them formidable foes in the world of fantasy.
                 </p>
             </div>
             <div class="creature">
-                <img src="dragon.jpg" alt="Dragon">
-                <h3>Dragon</h3>
-                <p>
+                <img src="/images/dragon.jpg" alt="Dragon">
+                <h3 class="shadowBold">Dragon</h3>
+                <p class="shadowRegular">
                     Dragons are majestic and powerful creatures, often depicted as immense, fire-breathing beings with scales and wings. Revered and feared in many cultures, they symbolize strength, wisdom, and destruction. Dragons are both protectors of treasure and fearsome adversaries in the realm of myth and legend.
                 </p>
             </div>
             <div class="creature">
-                <img src="./bigfoot.jpg" alt="Goblin">
-                <h3>Bigfoot</h3>
-                <p>
+                <img src="/images/bigfoot.jpg " alt="bigfoot">
+                <h3 class="shadowBold">Bigfoot</h3>
+                <p class="shadowRegular">
                     Bigfoot are small, cunning creatures known for their mischievous nature and love of causing trouble. Often found in dark forests or caves, they delight in trickery and stealing treasures. Despite their size, goblins are clever and resourceful, making them formidable foes in the world of fantasy.
                 </p>
             </div>
             <div class="creature">
-                <img src="./centaur.jpg" alt="Dragon">
-                <h3>Centaur</h3>
-                <p>
+                <img src="/images/centaur.jpg" alt="Dragon">
+                <h3 class="shadowBold">Centaur</h3>
+                <p class="shadowRegular">
                     Centaur are majestic and powerful creatures, often depicted as immense, fire-breathing beings with scales and wings. Revered and feared in many cultures, they symbolize strength, wisdom, and destruction. Dragons are both protectors of treasure and fearsome adversaries in the realm of myth and legend.
                 </p>
             </div>
         </div>
     </section>
-
     <section id="lore">
-        <h2 class="headerText">Lore & Legends</h2>
-        <p>Discover ancient stories and the lore behind the legendary creatures.</p>
-        <video src="./video2.mp4" autoplay></video>
+       
+        <div class="video-background">
+            <video autoplay loop muted playsinline>
+              <source src="/images/video2.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <div class="content">
+                <h2 class="headerText shadowBold">Lore And Legends</h2>
+                <p>Discover ancient stories and the lore behind the legendary creatures.</p>
+               <a href="./news.html"> <button class="btn">Explore Lore And Lengends</button></a>
+            </div>
+          </div>
     </section>
+
+
+    <h1 id="featureHeading" style="margin:0 1rem" class="shadowBold">Mythical Creatures and Beasts - Mystic Features</h1>
+    <div class="feature">
+        <div class="featureBlock">
+            <div id="feature1Image"></div>
+            <div class="content">
+                <span> Unveiling Fantasy Worlds, Legendary Creatures, and Global Folklore.</span> Exploring our website dedicated to mythical creatures and beasts offers a deep dive into the rich tapestry of human imagination and folklore. We provide detailed descriptions, histories, and cultural contexts of various legendary beings from different mythologies around the world. This can enhance your understanding of diverse cultures and their storytelling traditions, showing how mythical creatures reflect the values, fears, and hopes of the societies that created them.
+            </div>
+        </div>
+        <div class="featureBlock" id="reverseBlocks">
+            <div class="content">
+                <span> Ignite your creativity.</span> This website dedicated to legendary creatures and fantasy worlds serves as an excellent resource for creative inspiration. Writers, artists, and game developers can find a wealth of ideas for their own projects. The intricate details of these mythical beings, their habitats, and the stories surrounding them can spark creativity and provide a solid foundation for developing new, unique characters and settings in various forms of media, from novels to video games.
+            </div>
+            <div id="feature2Image"></div>
+        </div>
+        <div class="featureBlock">
+            <div id="feature3Image"></div>
+            <div class="content">
+                <span> Discover the wonders of our imaginative heritage.</span> Exploring our website Time spent visiting our websites can be a highly enjoyable and educational experience. We have interactive elements, high-quality artwork, and engaging content that make learning about these fantastical creatures enjoyable and immersive. Whether you are a casual enthusiast or a serious scholar, our website can provide hours of entertainment and a deeper appreciation for the fantastical aspects of human culture and storytelling.
+            </div>
+        </div>
+    </div>
+
+
+    
 
     <section id="interactive">
-        <h2 class="headerText">Interactive</h2>
-        <p>Take our quiz or create your own creature!</p>
-        <button> <a href="creatingpage.html" style="text-decoration: none; color:white ;">Create Your Creature</a></button>
+        <div class="image"></div>
+        <h2 class="headerText shadowBold">Interactive</h2>
+        <p>Create your own creature by combining two creatures!</p>
+        
+        <a href="./creatingpage.html"><button class="btn"> Create Your Creature</button></a>
     </section>
 
-    <footer>
-        <p>&copy; 2024 Fantasy Creatures</p>
-    </footer>
 
   
 </body>

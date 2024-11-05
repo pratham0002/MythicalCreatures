@@ -633,7 +633,7 @@
     </div>
   </div>
 
-<script>
+  <script>
     const creatures = [
       { src: "./images/bigfoot.jpg", name: "BIGFOOT" },
       { src: "./images/centaur.jpg", name: "CENTAUR" },
@@ -649,10 +649,11 @@
       { src: "./images/fairy.jpg", name: "FAIRY" },
     ];
 
-    let selectedCreature1 = "";
-    let selectedCreature2 = "";
+    let selectedCreature1 = null;
+    let selectedCreature2 = null;
     let allowSecondSelection = false;
 
+    // Initialize containers and display the creatures
     document.getElementById("imageContainer").style.display = "flex";
     displayCreaturesInContainers();
 
@@ -664,7 +665,7 @@
         const imageItem = document.createElement("div");
         imageItem.className = "image-item";
         imageItem.innerHTML = `
-          <img src="${creature.src}" alt="${creature.name}" onclick="selectImage(${index})">
+          <img src="${creature.src}" alt="${creature.name}" onclick="selectImage(${index}, ${index < creatures.length / 2 ? 1 : 2})">
           <div class="image-name shadowRegular">${creature.name}</div>
         `;
         if (index < creatures.length / 2) {
@@ -675,32 +676,38 @@
       });
     }
 
-    function selectImage(index) {
+    // Selection function with control over which container can be selected
+    function selectImage(index, containerNumber) {
       const selectedCreature = creatures[index];
-      const container1 = document.getElementById("container1");
-      const container2 = document.getElementById("container2");
 
-      if (!selectedCreature1) {
+      if (containerNumber === 1 && !selectedCreature1) {
+        // First selection in container 1
         selectedCreature1 = selectedCreature;
-        container1.style.background = "none";
-        container1.innerHTML = `
+        document.getElementById("container1").style.background = "none";
+        document.getElementById("container1").innerHTML = `
           <img class="imageHeightWidth" src="${selectedCreature.src}" alt="${selectedCreature.name}">
           <div class="image-name shadowRegular">${selectedCreature.name}</div>
         `;
         allowSecondSelection = true;
-      } else if (!selectedCreature2 && allowSecondSelection) {
+
+      } else if (containerNumber === 2 && allowSecondSelection && !selectedCreature2) {
+        // Second selection in container 2, allowed only after the first selection
         selectedCreature2 = selectedCreature;
-        container2.style.background = "none";
-        container2.innerHTML = `
+        document.getElementById("container2").style.background = "none";
+        document.getElementById("container2").innerHTML = `
           <img class="imageHeightWidth" src="${selectedCreature.src}" alt="${selectedCreature.name}">
           <div class="image-name shadowRegular">${selectedCreature.name}</div>
         `;
         updateResultImage();
       }
 
-      document.getElementById("resetButton").style.display = "inline-block";
+      // Display the reset button once both selections are made
+      if (selectedCreature1 && selectedCreature2) {
+        document.getElementById("resetButton").style.display = "inline-block";
+      }
     }
 
+    // Display the result after both images are selected
     function updateResultImage() {
       document.querySelector(".result-container").style.background = "none";
       document.querySelector(".loader").style.display = "block";
@@ -722,9 +729,10 @@
       }, 2000);
     }
 
+    // Reset function to allow re-selection
     function resetSelections() {
-      selectedCreature1 = "";
-      selectedCreature2 = "";
+      selectedCreature1 = null;
+      selectedCreature2 = null;
       allowSecondSelection = false;
       document.getElementById("container1").innerHTML = "";
       document.getElementById("container2").innerHTML = "";
@@ -734,6 +742,7 @@
       displayCreaturesInContainers();
     }
 </script>
+
 
 </body>
 

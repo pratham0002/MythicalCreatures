@@ -522,6 +522,7 @@
     }
       .container {
         height: 17rem;
+        padding: 0;
       }
 
 
@@ -632,7 +633,7 @@
     </div>
   </div>
 
-  <script>
+<script>
     const creatures = [
       { src: "./images/bigfoot.jpg", name: "BIGFOOT" },
       { src: "./images/centaur.jpg", name: "CENTAUR" },
@@ -650,6 +651,7 @@
 
     let selectedCreature1 = "";
     let selectedCreature2 = "";
+    let allowSecondSelection = false;
 
     document.getElementById("imageContainer").style.display = "flex";
     displayCreaturesInContainers();
@@ -662,9 +664,9 @@
         const imageItem = document.createElement("div");
         imageItem.className = "image-item";
         imageItem.innerHTML = `
-                    <img src="${creature.src}" alt="${creature.name}" onclick="selectImage(${index})">
-                    <div class="image-name shadowRegular">${creature.name}</div>
-                `;
+          <img src="${creature.src}" alt="${creature.name}" onclick="selectImage(${index})">
+          <div class="image-name shadowRegular">${creature.name}</div>
+        `;
         if (index < creatures.length / 2) {
           container1.appendChild(imageItem);
         } else {
@@ -675,34 +677,38 @@
 
     function selectImage(index) {
       const selectedCreature = creatures[index];
+      const container1 = document.getElementById("container1");
+      const container2 = document.getElementById("container2");
+
       if (!selectedCreature1) {
         selectedCreature1 = selectedCreature;
-        document.getElementById("container1").style.background = "none";
-        document.getElementById("container1").innerHTML = `
-                    <img class="imageHeightWidth" src="${selectedCreature.src}" alt="${selectedCreature.name}">
-                    <div class="image-name shadowRegular">${selectedCreature.name}</div>
-                `;
-      } else if (!selectedCreature2) {
+        container1.style.background = "none";
+        container1.innerHTML = `
+          <img class="imageHeightWidth" src="${selectedCreature.src}" alt="${selectedCreature.name}">
+          <div class="image-name shadowRegular">${selectedCreature.name}</div>
+        `;
+        allowSecondSelection = true;
+      } else if (!selectedCreature2 && allowSecondSelection) {
         selectedCreature2 = selectedCreature;
-        document.getElementById("container2").style.background = "none";
-        document.getElementById("container2").innerHTML = `
-                    <img class="imageHeightWidth" src="${selectedCreature.src}" alt="${selectedCreature.name}">
-                    <div class="image-name shadowRegular">${selectedCreature.name}</div>
-                `;
+        container2.style.background = "none";
+        container2.innerHTML = `
+          <img class="imageHeightWidth" src="${selectedCreature.src}" alt="${selectedCreature.name}">
+          <div class="image-name shadowRegular">${selectedCreature.name}</div>
+        `;
         updateResultImage();
       }
+
       document.getElementById("resetButton").style.display = "inline-block";
     }
 
     function updateResultImage() {
-      console.log("Updated");
       document.querySelector(".result-container").style.background = "none";
       document.querySelector(".loader").style.display = "block";
       
       setTimeout(() => {
           window.scrollTo(0, document.body.scrollHeight);
       }, 100);
-      
+
       setTimeout(() => {
           document.querySelector(".loader").style.display = "none";
       
@@ -714,13 +720,12 @@
               resultName.textContent = `${selectedCreature1.name} & ${selectedCreature2.name}`;
           }
       }, 2000);
-  }
-  
-    
+    }
 
     function resetSelections() {
       selectedCreature1 = "";
       selectedCreature2 = "";
+      allowSecondSelection = false;
       document.getElementById("container1").innerHTML = "";
       document.getElementById("container2").innerHTML = "";
       document.getElementById("resultImage").style.display = "none";
@@ -728,7 +733,8 @@
       document.getElementById("resetButton").style.display = "none";
       displayCreaturesInContainers();
     }
-  </script>
+</script>
+
 </body>
 
 </html>

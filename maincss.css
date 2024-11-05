@@ -63,6 +63,8 @@ text-align: center;
 color: wheat;
 }
 
+
+
 /* Transparent Navbar */
 header {
     position: sticky;
@@ -412,6 +414,10 @@ footer {
 
 
 @media (max-width: 768px) {
+    .creatureMarginTop{
+        margin-top: 10rem !important;
+
+    }
     section#creatures {
         margin-top: 8rem;
     }

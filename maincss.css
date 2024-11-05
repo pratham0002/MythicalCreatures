@@ -52,6 +52,7 @@ body {
     letter-spacing: 1px;
     font-style: normal;
   }
+ 
 
 .headerText{
     font-size: 3.5rem;
@@ -411,6 +412,9 @@ footer {
 
 
 @media (max-width: 768px) {
+    section#creatures {
+        margin-top: 8rem;
+    }
 header{
     flex-direction: column;
     position: fixed;
